@@ -1,0 +1,27 @@
+
+
+/* 0/1 DATA GENERATOR                                               */
+/* Copyright (c) 1999, Spectrum Applications, Derwood, MD, USA      */
+/* All rights reserved                                              */
+/* Version 2.0 Last Modified 1999.02.17                             */
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+ 
+#include "vdsim.h"
+ 
+void gen01dat( long data_len, int *out_array ) {
+ 
+    long t;            /* time */
+
+    /* re-seed the random number generator */
+    randomize();
+
+    /* generate the random data and write it to the output array */
+    for (t = 0; t < data_len; t++)
+        *( out_array + t ) = (int)( rand() / (RAND_MAX / 2) > 0.5 );
+
+}
+
