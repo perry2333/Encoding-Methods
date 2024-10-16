@@ -1,0 +1,35 @@
+function =Compare(COPY,COPY_new)
+%COMPARE 统计两个矩阵之间的失真情况并给出原图像与恢复图像的均方误差
+%第四个参数大于等于1表示汉明失真，0表示绝对失真
+[m,n] = size(COPY);
+check = zeros(m,n);
+
+for i = 1:m
+    for j = 1:n
+        if  COPY(i,j)~= COPY_new(i,j)    
+            if abs(COPY_new(i,j)-int8(14))>=abs(COPY_new(i,j)-int8(163))
+                COPY_new(i,j) = 163;
+            else
+                
+        end
+    end
+end
+Ave = value/n^2;
+for i = 1:m
+    for j = 1:n
+        xg = (double(COPY(i,j))-Ave)^2 + xg;        
+    end
+end
+xg = xg/n^2;
+aserror = sum/(n*n);
+fprintf('当分块大小为%d*%d时，原图像与恢复图像的均方误差为%.02f ,',N,N,aserror);
+d = count/(m*n);
+if mode == 0
+    fprintf('图像的绝对失真度为%d\n',N,N,count);
+end
+if mode >=1
+    fprintf('图像的汉明失真度为%d，相对汉明失真度为%.02f%%\n',count,d*100);
+end
+
+
+end

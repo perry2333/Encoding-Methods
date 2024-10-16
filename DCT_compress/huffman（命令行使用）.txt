@@ -1,0 +1,13 @@
+%out_sum为游程变换的结果
+%编码解码过程已进行验证，保证程序无错误且为无失真压缩
+A=tabulate(out_sum());
+for i=164 
+    p(1,i)=A(i,3)100; %概率矩阵
+    d(1,i)=A(i,1);     %序列矩阵
+end
+
+[dict,~] = huffmandict(d, p) ;%dict记录Huffman生成的码元信息
+encstr = huffmanenco(out_sum,dict);   %encstr为Huffman编码结果矩阵
+deco = huffmandeco(encstr, dict); %deco为Huffman解码的结果
+out_sum_2=dec2bin(out_sum);     %out_sum_2为游程编码结果的二进制形式
+%请对encstr以及out_sum_2进行去空格处理，并用encstr文本大小除以out_sum_2文本大小获得Huffman阶段的压缩比
